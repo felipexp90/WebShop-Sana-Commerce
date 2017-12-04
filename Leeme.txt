@@ -1,0 +1,10 @@
+/*******************************************/
+Autor: Felipe Grisales
+Date: 4/12/2017
+/*******************************************/
+1. Open the SQL Server Management
+1. Execute the Files folder Info_Database
+2. Open the solution WebShop.sln - Visual Studio 2017
+3. Change dataBase connection in the file Web.config in the Project.
+4. Run the Project
+ 

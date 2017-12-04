@@ -1,0 +1,51 @@
+﻿@model WebShop.Models.CATEGORY
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>CATEGORY</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.NAME)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NAME)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ACTIVE)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ACTIVE)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DATE_CREATION)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DATE_CREATION)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DATE_MODIFI)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DATE_MODIFI)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

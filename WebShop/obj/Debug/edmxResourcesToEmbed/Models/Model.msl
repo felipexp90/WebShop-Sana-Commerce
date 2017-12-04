@@ -1,0 +1,100 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="WEBSHOPModelStoreContainer" CdmEntityContainer="WEBSHOPEntities">
+    <EntitySetMapping Name="CUSTOMERS">
+      <EntityTypeMapping TypeName="WEBSHOPModel.CUSTOMERS">
+        <MappingFragment StoreEntitySet="CUSTOMERS">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="ID_DOCUMENT_TYPE" ColumnName="ID_DOCUMENT_TYPE" />
+          <ScalarProperty Name="DOCUMENT_NUMBER" ColumnName="DOCUMENT_NUMBER" />
+          <ScalarProperty Name="FULLNAME" ColumnName="FULLNAME" />
+          <ScalarProperty Name="ADDRESS" ColumnName="ADDRESS" />
+          <ScalarProperty Name="PHONE" ColumnName="PHONE" />
+          <ScalarProperty Name="DATE_CREATION" ColumnName="DATE_CREATION" />
+          <ScalarProperty Name="DATE_MODIFI" ColumnName="DATE_MODIFI" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="DOCUMENT_TYPE">
+      <EntityTypeMapping TypeName="WEBSHOPModel.DOCUMENT_TYPE">
+        <MappingFragment StoreEntitySet="DOCUMENT_TYPE">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="DESCRIPTION" ColumnName="DESCRIPTION" />
+          <ScalarProperty Name="DATE_CREATION" ColumnName="DATE_CREATION" />
+          <ScalarProperty Name="DATE_MODIFI" ColumnName="DATE_MODIFI" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ORDERS">
+      <EntityTypeMapping TypeName="WEBSHOPModel.ORDERS">
+        <MappingFragment StoreEntitySet="ORDERS">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="ID_CUSTOMER" ColumnName="ID_CUSTOMER" />
+          <ScalarProperty Name="AMOUNT" ColumnName="AMOUNT" />
+          <ScalarProperty Name="TAX" ColumnName="TAX" />
+          <ScalarProperty Name="TOTAL_AMOUNT" ColumnName="TOTAL_AMOUNT" />
+          <ScalarProperty Name="DATE_CREATION" ColumnName="DATE_CREATION" />
+          <ScalarProperty Name="DATE_MODIFI" ColumnName="DATE_MODIFI" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ORDERS_DETAILS">
+      <EntityTypeMapping TypeName="WEBSHOPModel.ORDERS_DETAILS">
+        <MappingFragment StoreEntitySet="ORDERS_DETAILS">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="ID_ORDER" ColumnName="ID_ORDER" />
+          <ScalarProperty Name="ID_PRODUCT" ColumnName="ID_PRODUCT" />
+          <ScalarProperty Name="UNITS" ColumnName="UNITS" />
+          <ScalarProperty Name="PRICE" ColumnName="PRICE" />
+          <ScalarProperty Name="DATE_CREATION" ColumnName="DATE_CREATION" />
+          <ScalarProperty Name="DATE_MODIFI" ColumnName="DATE_MODIFI" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PARAMETRIZATION">
+      <EntityTypeMapping TypeName="WEBSHOPModel.PARAMETRIZATION">
+        <MappingFragment StoreEntitySet="PARAMETRIZATION">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="KEY" ColumnName="KEY" />
+          <ScalarProperty Name="VALUE" ColumnName="VALUE" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CATEGORIES">
+      <EntityTypeMapping TypeName="WEBSHOPModel.CATEGORIES">
+        <MappingFragment StoreEntitySet="CATEGORIES">
+          <ScalarProperty Name="DATE_MODIFI" ColumnName="DATE_MODIFI" />
+          <ScalarProperty Name="DATE_CREATION" ColumnName="DATE_CREATION" />
+          <ScalarProperty Name="ACTIVE" ColumnName="ACTIVE" />
+          <ScalarProperty Name="NAME" ColumnName="NAME" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PRODUCTS">
+      <EntityTypeMapping TypeName="WEBSHOPModel.PRODUCTS">
+        <MappingFragment StoreEntitySet="PRODUCTS">
+          <ScalarProperty Name="DATE_MODIFI" ColumnName="DATE_MODIFI" />
+          <ScalarProperty Name="DATE_CREATION" ColumnName="DATE_CREATION" />
+          <ScalarProperty Name="ACTIVE" ColumnName="ACTIVE" />
+          <ScalarProperty Name="AMOUNTS" ColumnName="AMOUNTS" />
+          <ScalarProperty Name="PRICE" ColumnName="PRICE" />
+          <ScalarProperty Name="DESCRIPTION" ColumnName="DESCRIPTION" />
+          <ScalarProperty Name="NAME" ColumnName="NAME" />
+          <ScalarProperty Name="ID_PRODUCT" ColumnName="ID_PRODUCT" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PRODUCT_CATEGORIES">
+      <EntityTypeMapping TypeName="WEBSHOPModel.PRODUCT_CATEGORIES">
+        <MappingFragment StoreEntitySet="PRODUCT_CATEGORIES">
+          <ScalarProperty Name="DATE_MODIFI" ColumnName="DATE_MODIFI" />
+          <ScalarProperty Name="DATE_CREATION" ColumnName="DATE_CREATION" />
+          <ScalarProperty Name="ID_PRODUCT" ColumnName="ID_PRODUCT" />
+          <ScalarProperty Name="ID_CATEGORIES" ColumnName="ID_CATEGORIES" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

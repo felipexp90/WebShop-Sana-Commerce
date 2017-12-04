@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="fbe4dfca3f4841078bed7998bbbb0eb7" Name="Diagram1">
+        <EntityTypeShape EntityType="WEBSHOPModel.CUSTOMERS" Width="1.5" PointX="1.5" PointY="8.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="WEBSHOPModel.DOCUMENT_TYPE" Width="1.5" PointX="1.5" PointY="13.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="WEBSHOPModel.ORDERS" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="WEBSHOPModel.ORDERS_DETAILS" Width="1.5" PointX="3" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="WEBSHOPModel.PARAMETRIZATION" Width="1.5" PointX="3.75" PointY="8.875" IsExpanded="true" />
+        <AssociationConnector Association="WEBSHOPModel.FK_ID_CUSTOMER" ManuallyRouted="false" />
+        <AssociationConnector Association="WEBSHOPModel.FK_ID_DOCUMENT_TYPE" ManuallyRouted="false" />
+        <AssociationConnector Association="WEBSHOPModel.FK_ID_ORDER" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="WEBSHOPModel.CATEGORIES" Width="1.5" PointX="3.375" PointY="0.875" />
+        <EntityTypeShape EntityType="WEBSHOPModel.PRODUCTS" Width="1.5" PointX="0.75" PointY="4.625" />
+        <AssociationConnector Association="WEBSHOPModel.FK_ID_PRODUCT_ORDERS" />
+        <EntityTypeShape EntityType="WEBSHOPModel.PRODUCT_CATEGORIES" Width="1.5" PointX="5.625" PointY="3" />
+        <AssociationConnector Association="WEBSHOPModel.FK_ID_CATEGORIES" />
+        <AssociationConnector Association="WEBSHOPModel.FK_ID_PRODUCT" />
+        </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

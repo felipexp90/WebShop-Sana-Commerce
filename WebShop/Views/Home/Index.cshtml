@@ -1,0 +1,29 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+<div style=" width: 100%;height:30%">
+    <img src="Images/Logo_large_RGB.png" style=" width: 20%;" />
+</div>
+<img src="Images/Online_Shopping_EN.jpg" style=" width: 100%;" />
+
+
+<div class="row">
+    <div class="col-md-4">
+        <h2>Start Now</h2>
+        <p>
+            Manage your products with a application very easy, speedy and trustworthy
+        </p>
+        <p>@Html.ActionLink("Go Now ¡¡", "Index", "Products", new { @class = "btn btn-success" })
+        @*<a class="btn btn-default">Go Now¡¡</a></p>*@
+    </div>
+    <div class="col-md-4">
+        <h2>Get more information</h2>
+        <p>Sana Commerce is an integrated e-commerce solution for Microsoft Dynamics and SAP.</p>
+        <p><a class="btn btn-info" href="https://www.sana-commerce.com/">Learn more &raquo;</a></p>
+    </div>
+    <div class="col-md-4">
+        <h2>About Web Site</h2>
+        <p>This website is built by systems engineer Luis Felipe Grisales and is made for the company Sana Commerce</p>
+        <p>@Html.ActionLink("Know ¡¡", "About", "Home", new { @class = "btn btn-info" })
+</div>
+</div>

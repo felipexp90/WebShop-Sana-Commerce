@@ -1,0 +1,208 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="WEBSHOPModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="CUSTOMERS">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ID_DOCUMENT_TYPE" Type="Int32" />
+    <Property Name="DOCUMENT_NUMBER" Type="Int32" />
+    <Property Name="FULLNAME" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="ADDRESS" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="PHONE" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="DATE_CREATION" Type="DateTime" Precision="0" />
+    <Property Name="DATE_MODIFI" Type="DateTime" Precision="0" />
+    <NavigationProperty Name="ORDERS" Relationship="Self.FK_ID_CUSTOMER" FromRole="CUSTOMERS" ToRole="ORDERS" />
+    <NavigationProperty Name="DOCUMENT_TYPE" Relationship="Self.FK_ID_DOCUMENT_TYPE" FromRole="CUSTOMERS" ToRole="DOCUMENT_TYPE" />
+  </EntityType>
+  <EntityType Name="DOCUMENT_TYPE">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="DESCRIPTION" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="DATE_CREATION" Type="DateTime" Precision="0" />
+    <Property Name="DATE_MODIFI" Type="DateTime" Precision="0" />
+    <NavigationProperty Name="CUSTOMERS" Relationship="Self.FK_ID_DOCUMENT_TYPE" FromRole="DOCUMENT_TYPE" ToRole="CUSTOMERS" />
+  </EntityType>
+  <EntityType Name="ORDERS">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" />
+    <Property Name="ID_CUSTOMER" Type="Int32" />
+    <Property Name="AMOUNT" Type="Decimal" Precision="20" Scale="5" />
+    <Property Name="TAX" Type="Decimal" Precision="5" Scale="2" />
+    <Property Name="TOTAL_AMOUNT" Type="Decimal" Precision="20" Scale="5" />
+    <Property Name="DATE_CREATION" Type="DateTime" Precision="0" />
+    <Property Name="DATE_MODIFI" Type="DateTime" Precision="0" />
+    <NavigationProperty Name="CUSTOMERS" Relationship="Self.FK_ID_CUSTOMER" FromRole="ORDERS" ToRole="CUSTOMERS" />
+    <NavigationProperty Name="ORDERS_DETAILS" Relationship="Self.FK_ID_ORDER" FromRole="ORDERS" ToRole="ORDERS_DETAILS" />
+  </EntityType>
+  <EntityType Name="ORDERS_DETAILS">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" />
+    <Property Name="ID_ORDER" Type="Int32" />
+    <Property Name="ID_PRODUCT" Type="Int32" />
+    <Property Name="UNITS" Type="Decimal" Precision="10" Scale="2" />
+    <Property Name="PRICE" Type="Decimal" Precision="10" Scale="2" />
+    <Property Name="DATE_CREATION" Type="DateTime" Precision="0" />
+    <Property Name="DATE_MODIFI" Type="DateTime" Precision="0" />
+    <NavigationProperty Name="ORDERS" Relationship="Self.FK_ID_ORDER" FromRole="ORDERS_DETAILS" ToRole="ORDERS" />
+    <NavigationProperty Name="PRODUCTS" Relationship="WEBSHOPModel.FK_ID_PRODUCT_ORDERS" FromRole="ORDERS_DETAILS" ToRole="PRODUCTS" />
+  </EntityType>
+  <EntityType Name="PARAMETRIZATION">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" />
+    <Property Name="KEY" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="VALUE" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <Association Name="FK_ID_CUSTOMER">
+    <End Role="CUSTOMERS" Type="Self.CUSTOMERS" Multiplicity="0..1" />
+    <End Role="ORDERS" Type="Self.ORDERS" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CUSTOMERS">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="ORDERS">
+        <PropertyRef Name="ID_CUSTOMER" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ID_DOCUMENT_TYPE">
+    <End Role="DOCUMENT_TYPE" Type="Self.DOCUMENT_TYPE" Multiplicity="0..1" />
+    <End Role="CUSTOMERS" Type="Self.CUSTOMERS" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="DOCUMENT_TYPE">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="CUSTOMERS">
+        <PropertyRef Name="ID_DOCUMENT_TYPE" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ID_ORDER">
+    <End Role="ORDERS" Type="Self.ORDERS" Multiplicity="0..1" />
+    <End Role="ORDERS_DETAILS" Type="Self.ORDERS_DETAILS" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ORDERS">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="ORDERS_DETAILS">
+        <PropertyRef Name="ID_ORDER" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="WEBSHOPEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="CUSTOMERS" EntityType="Self.CUSTOMERS" />
+    <EntitySet Name="DOCUMENT_TYPE" EntityType="Self.DOCUMENT_TYPE" />
+    <EntitySet Name="ORDERS" EntityType="Self.ORDERS" />
+    <EntitySet Name="ORDERS_DETAILS" EntityType="Self.ORDERS_DETAILS" />
+    <EntitySet Name="PARAMETRIZATION" EntityType="Self.PARAMETRIZATION" />
+    <AssociationSet Name="FK_ID_CUSTOMER" Association="Self.FK_ID_CUSTOMER">
+      <End Role="CUSTOMERS" EntitySet="CUSTOMERS" />
+      <End Role="ORDERS" EntitySet="ORDERS" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ID_DOCUMENT_TYPE" Association="Self.FK_ID_DOCUMENT_TYPE">
+      <End Role="DOCUMENT_TYPE" EntitySet="DOCUMENT_TYPE" />
+      <End Role="CUSTOMERS" EntitySet="CUSTOMERS" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ID_ORDER" Association="Self.FK_ID_ORDER">
+      <End Role="ORDERS" EntitySet="ORDERS" />
+      <End Role="ORDERS_DETAILS" EntitySet="ORDERS_DETAILS" />
+    </AssociationSet>
+    <EntitySet Name="CATEGORIES" EntityType="WEBSHOPModel.CATEGORIES" />
+    <EntitySet Name="PRODUCTS" EntityType="WEBSHOPModel.PRODUCTS" />
+    <AssociationSet Name="FK_ID_PRODUCT_ORDERS" Association="WEBSHOPModel.FK_ID_PRODUCT_ORDERS">
+      <End Role="PRODUCTS" EntitySet="PRODUCTS" />
+      <End Role="ORDERS_DETAILS" EntitySet="ORDERS_DETAILS" />
+    </AssociationSet>
+    <EntitySet Name="PRODUCT_CATEGORIES" EntityType="WEBSHOPModel.PRODUCT_CATEGORIES" />
+    <AssociationSet Name="FK_ID_CATEGORIES" Association="WEBSHOPModel.FK_ID_CATEGORIES">
+      <End Role="CATEGORIES" EntitySet="CATEGORIES" />
+      <End Role="PRODUCT_CATEGORIES" EntitySet="PRODUCT_CATEGORIES" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ID_PRODUCT" Association="WEBSHOPModel.FK_ID_PRODUCT">
+      <End Role="PRODUCTS" EntitySet="PRODUCTS" />
+      <End Role="PRODUCT_CATEGORIES" EntitySet="PRODUCT_CATEGORIES" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="CATEGORIES">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="NAME" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="ACTIVE" Type="Boolean" />
+    <Property Name="DATE_CREATION" Type="DateTime" Precision="0" />
+    <Property Name="DATE_MODIFI" Type="DateTime" Precision="0" />
+    <NavigationProperty Name="PRODUCT_CATEGORIES" Relationship="WEBSHOPModel.FK_ID_CATEGORIES" FromRole="CATEGORIES" ToRole="PRODUCT_CATEGORIES" />
+  </EntityType>
+  <EntityType Name="PRODUCTS">
+    <Key>
+      <PropertyRef Name="ID_PRODUCT" />
+    </Key>
+    <Property Name="ID_PRODUCT" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="NAME" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="DESCRIPTION" Type="String" MaxLength="80" FixedLength="false" Unicode="false" />
+    <Property Name="PRICE" Type="Decimal" Precision="10" Scale="2" />
+    <Property Name="AMOUNTS" Type="Decimal" Precision="10" Scale="2" />
+    <Property Name="ACTIVE" Type="Boolean" />
+    <Property Name="DATE_CREATION" Type="DateTime" Precision="0" />
+    <Property Name="DATE_MODIFI" Type="DateTime" Precision="0" />
+    <NavigationProperty Name="ORDERS_DETAILS" Relationship="WEBSHOPModel.FK_ID_PRODUCT_ORDERS" FromRole="PRODUCTS" ToRole="ORDERS_DETAILS" />
+    <NavigationProperty Name="PRODUCT_CATEGORIES" Relationship="WEBSHOPModel.FK_ID_PRODUCT" FromRole="PRODUCTS" ToRole="PRODUCT_CATEGORIES" />
+  </EntityType>
+  <Association Name="FK_ID_PRODUCT_ORDERS">
+    <End Type="WEBSHOPModel.PRODUCTS" Role="PRODUCTS" Multiplicity="0..1" />
+    <End Type="WEBSHOPModel.ORDERS_DETAILS" Role="ORDERS_DETAILS" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PRODUCTS">
+        <PropertyRef Name="ID_PRODUCT" />
+      </Principal>
+      <Dependent Role="ORDERS_DETAILS">
+        <PropertyRef Name="ID_PRODUCT" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="PRODUCT_CATEGORIES">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" />
+    <Property Name="ID_CATEGORIES" Type="Int32" />
+    <Property Name="ID_PRODUCT" Type="Int32" />
+    <Property Name="DATE_CREATION" Type="DateTime" Precision="0" />
+    <Property Name="DATE_MODIFI" Type="DateTime" Precision="0" />
+    <NavigationProperty Name="CATEGORIES" Relationship="WEBSHOPModel.FK_ID_CATEGORIES" FromRole="PRODUCT_CATEGORIES" ToRole="CATEGORIES" />
+    <NavigationProperty Name="PRODUCTS" Relationship="WEBSHOPModel.FK_ID_PRODUCT" FromRole="PRODUCT_CATEGORIES" ToRole="PRODUCTS" />
+  </EntityType>
+  <Association Name="FK_ID_CATEGORIES">
+    <End Type="WEBSHOPModel.CATEGORIES" Role="CATEGORIES" Multiplicity="0..1" />
+    <End Type="WEBSHOPModel.PRODUCT_CATEGORIES" Role="PRODUCT_CATEGORIES" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CATEGORIES">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="PRODUCT_CATEGORIES">
+        <PropertyRef Name="ID_CATEGORIES" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ID_PRODUCT">
+    <End Type="WEBSHOPModel.PRODUCTS" Role="PRODUCTS" Multiplicity="0..1" />
+    <End Type="WEBSHOPModel.PRODUCT_CATEGORIES" Role="PRODUCT_CATEGORIES" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PRODUCTS">
+        <PropertyRef Name="ID_PRODUCT" />
+      </Principal>
+      <Dependent Role="PRODUCT_CATEGORIES">
+        <PropertyRef Name="ID_PRODUCT" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>
