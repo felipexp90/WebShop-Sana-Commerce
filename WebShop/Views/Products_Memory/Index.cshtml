@@ -7,16 +7,6 @@
 
 <h2>Products</h2>
 
-@using (Html.BeginForm())
-{
-<label for="Storage">Selected Storage</label>
-<select id="SelectedStorageId" name="SelectedStorage">
-    <option value="1" >-- Select Option --</option>
-    <option value="database" >Database</option>
-    <option value="localMemory">Local Storage</option>
- </select>
-}
-
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>

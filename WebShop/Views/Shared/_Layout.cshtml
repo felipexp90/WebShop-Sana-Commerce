@@ -1,12 +1,37 @@
 ﻿<!DOCTYPE html>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title - WEBSHOP Sana Commerce</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
+    <script src="~/Scripts/jquery-1.12.4.js"></script>
+    <script>
+
+        $(document).ready(function () {
+            $('#SelectedStorageId').change(function () {
+                var StorageId = $("#SelectedStorageId :selected").attr('value');
+
+                var dataToSend = "01";
+                var url = '/Products' + "?OptionStorage="+StorageId;
+                window.location = url;
+
+
+                @*$.ajax({
+                    url: '@Url.Action("Index", "Products")',
+                    type: 'POST',
+                    data: { OptionStorage: StorageId },
+                    success: function (data) {
+                        if (data.success = "true") {
+
+                        }
+                    }
+                });*@
+            });
+        });
+    </script>
 </head>
 <body>
     <div class="navbar navbar-inverse navbar-fixed-top slider ">

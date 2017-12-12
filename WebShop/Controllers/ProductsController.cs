@@ -15,11 +15,31 @@ namespace WebShop.Controllers
         private WEBSHOPEntities db = new WEBSHOPEntities();
 
         // GET: Products
-        public ActionResult Index()
+        public ActionResult Index(string OptionStorage)
         {
-            return View(db.PRODUCTS.ToList());
+            if (OptionStorage == "database")
+            {
+                return View(db.PRODUCTS.ToList());
+            }
+            else
+            {
+                List<PRODUCTS> ListPRODUCTS = new List<PRODUCTS>();
+                ListPRODUCTS = (List<PRODUCTS>)Session["PRODUCT"];
+                if (ListPRODUCTS != null)
+                {
+                    return View(ListPRODUCTS.ToList());
+                }
+                else
+                {
+                    ListPRODUCTS = new List<PRODUCTS>();
+                    PRODUCTS _PRODUCTS = new PRODUCTS();
+                    ListPRODUCTS.Add(_PRODUCTS);
+                    return View(ListPRODUCTS.ToList());
+                }
+            }
         }
 
+       
         // GET: Products/Details/5
         public ActionResult Details(int? id)
         {
@@ -48,16 +68,32 @@ namespace WebShop.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "ID_PRODUCT,NAME,DESCRIPTION,PRICE,AMOUNTS,ACTIVE,DATE_CREATION,DATE_MODIFI")] PRODUCTS pRODUCT)
         {
+            var keys = Request.Form.AllKeys;
+            var OptionStorage = Request.Form.Get("SelectedStorage");
+            pRODUCT.ACTIVE = true;
+            pRODUCT.DATE_CREATION = DateTime.Now;
+            pRODUCT.DATE_MODIFI = DateTime.Now;
+
             if (ModelState.IsValid)
             {
-                pRODUCT.ACTIVE = true;
-                pRODUCT.DATE_CREATION = DateTime.Now;
-                pRODUCT.DATE_MODIFI = DateTime.Now;
-                db.PRODUCTS.Add(pRODUCT);
-                db.SaveChanges();
+                if (OptionStorage == "database")
+                {
+                    db.PRODUCTS.Add(pRODUCT);
+                    db.SaveChanges();
+                }
+                else
+                {
+                    List<PRODUCTS> ListPRODUCTS = new List<PRODUCTS>();
+                    if ((List<PRODUCTS>)Session["PRODUCT"] != null)
+                    {
+                        ListPRODUCTS = (List<PRODUCTS>)Session["PRODUCT"];
+                    }
+
+                    ListPRODUCTS.Add(pRODUCT);
+                    Session["PRODUCT"] = ListPRODUCTS;
+                }
                 return RedirectToAction("Index");
             }
-
             return View(pRODUCT);
         }
 

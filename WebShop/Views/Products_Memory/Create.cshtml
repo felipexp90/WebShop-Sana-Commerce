@@ -9,19 +9,12 @@
 <h2>Create</h2>
 
 
-
 @using (Html.BeginForm()) 
 {
     @Html.AntiForgeryToken()
-
-    <label for="Storage">Selected Storage</label>
-    <select id="SelectedStorageId" name="SelectedStorage">
-        <option value="database" selected>Database</option>
-        <option value="localMemory">Local Storage</option>
-    </select>
-
+    
     <div class="form-horizontal">
-        <h4>PRODUCT</h4>
+        <h4>PRODUCTS BASED LOCAL MEMORY</h4>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         <div class="form-group">

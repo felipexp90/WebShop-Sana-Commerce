@@ -267,6 +267,11 @@
     <Content Include="Views\PRODUCT_CATEGORIES\Details.cshtml" />
     <Content Include="Views\PRODUCT_CATEGORIES\Edit.cshtml" />
     <Content Include="Views\PRODUCT_CATEGORIES\Index.cshtml" />
+    <Content Include="Views\Products_Memory\Create.cshtml" />
+    <Content Include="Views\Products_Memory\Delete.cshtml" />
+    <Content Include="Views\Products_Memory\Details.cshtml" />
+    <Content Include="Views\Products_Memory\Edit.cshtml" />
+    <Content Include="Views\Products_Memory\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
